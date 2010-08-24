@@ -1,22 +1,12 @@
-# Uncomment this if you reference any of your controllers in activate
-# require_dependency 'application'
-
 class YandexMarketScraperExtension < Spree::Extension
-  version "1.0"
-  description "Describe your extension here"
-  url "http://yourwebsite.com/yandex_market_scraper"
+  version "0.1"
+  description "Позволяет получить описание товара из сервиса Яндекс маркет"
+  url "http://github.com/Antiarchitect/spree-yandex-market-scraper"
 
-  # Please use yandex_market_scraper/config/routes.rb instead for extension routes.
-
-  # def self.require_gems(config)
-  #   config.gem "gemname-goes-here", :version => '1.2.3'
-  # end
+  def self.require_gems(config)
+    config.gem "nokogiri", :source => "http://rubygems.org"
+  end
   
   def activate
-
-    # make your helper avaliable in all views
-    # Spree::BaseController.class_eval do
-    #   helper YourHelper
-    # end
   end
 end
