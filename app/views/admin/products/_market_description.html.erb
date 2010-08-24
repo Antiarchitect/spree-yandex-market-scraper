@@ -1,0 +1,25 @@
+<% f.field_container :name do %>
+  <%= f.label :name, t("name") %> <span class="required">*</span><br />
+  <%= f.text_field :name, :class => 'fullwidth title'  %>
+  <%= f.error_message_on :name %>
+<% end %>
+
+<% f.field_container :permalink do %>
+  <%= f.label :permalink, t("permalink") %> <span class="required">*</span><br />
+  <%= f.text_field :permalink, :class => 'fullwidth title'  %>
+  <%= f.error_message_on :permalink %>
+<% end %>
+
+<% f.field_container :yandex_scrape do %>
+  <%= label_tag :market_link, 'Укажите ссылку на товар в Яндекс маркете' %><br />
+  <%= text_field_tag :market_link, nil, {:class => 'fullwidth title'} %>
+  <p class="form-buttons">
+    <%= button_link_to_remote 'Получить описание', {} %>
+  </p>
+<% end %>
+
+<% f.field_container :description do %>
+  <%= f.label :description, t("description")%><br />
+  <%= f.text_area :description, {:cols => 60, :rows => 4, :class => 'fullwidth'} %>
+  <%= f.error_message_on :description %>
+<% end %>
