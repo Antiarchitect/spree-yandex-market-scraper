@@ -1,5 +1,3 @@
-# Put your extension routes here.
-
-# map.namespace :admin do |admin|
-#   admin.resources :whatever
-# end  
+map.namespace :admin do |admin|
+  admin.resource :yandex_market_scrape
+end  
