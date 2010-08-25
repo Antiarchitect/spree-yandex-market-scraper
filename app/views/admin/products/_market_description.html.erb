@@ -14,7 +14,7 @@
   <%= label_tag :market_link, 'Укажите ссылку на товар в Яндекс маркете' %><br />
   <%= text_field_tag :market_link, nil, {:class => 'fullwidth title'} %>
   <p class="form-buttons">
-    <%= button_link_to_remote 'Получить описание', {:url => {:controller => '/admin/yandex_market_scrapes', :action => 'new', :formtat => 'js'}, :method => :get, :with => "'market_link=' + $('#market_link').val()"} %>
+    <%= button_link_to_remote 'Получить описание', {:url => {:controller => '/admin/yandex_market_scrapes', :action => 'new', :formtat => 'js'}, :method => :get, :with => "'market_link=' + escape($('#market_link').val())"} %>
   </p>
 <% end %>
 
