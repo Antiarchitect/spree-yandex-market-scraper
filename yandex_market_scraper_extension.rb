@@ -8,5 +8,10 @@ class YandexMarketScraperExtension < Spree::Extension
   end
   
   def activate
+    ProductsHelper.module_eval do
+      def product_description(product)
+        raw(product.description)
+      end
+    end
   end
 end
