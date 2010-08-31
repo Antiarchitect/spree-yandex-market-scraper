@@ -11,10 +11,12 @@
 <% end %>
 
 <% f.field_container :yandex_scrape do %>
-  <%= label_tag :market_link, 'Укажите ссылку на товар в Яндекс маркете' %><br />
+  <%= label_tag :market_link, 'Укажите ссылку на товар в Яндекс.Маркете' %><br />
   <%= text_field_tag :market_link, nil, {:class => 'fullwidth title'} %>
+  <%= check_box_tag :download_images, '1', true %>
+  <%= label_tag :download_images, 'Загружать изображения с Яндекс.Маркет' %><br />
   <p class="form-buttons">
-    <%= button_link_to_remote 'Получить описание', {:url => {:controller => '/admin/yandex_market_scrapes', :action => 'new', :formtat => 'js', :product_id => @product.id}, :method => :get, :with => "'market_link=' + encodeURIComponent($('#market_link').val())"} %>
+    <%= button_link_to_remote 'Получить описание', {:url => {:controller => '/admin/yandex_market_scrapes', :action => 'new', :formtat => 'js', :product_id => @product.id}, :method => :get, :with => "'market_link=' + encodeURIComponent($('#market_link').val()) + '&download_images=' + $('#download_images:checked').val()"} %>
   </p>
 <% end %>
 

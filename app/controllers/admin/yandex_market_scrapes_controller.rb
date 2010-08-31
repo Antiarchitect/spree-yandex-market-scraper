@@ -4,14 +4,13 @@ class Admin::YandexMarketScrapesController < Spree::BaseController
   MARKET_ODD_META = '. Все характеристики, сравнение цен, отзывы покупателей на Яндекс.Маркете.'
 
   def new
-
     market_link = open(params[:market_link])
     market_page = Nokogiri::HTML(market_link)
     description = market_page.at_xpath("//div[@id='full-spec-cont']")
     description.at_xpath("//p[@class='grey']").remove
     @link = description.inner_html()
 
-    if params[:product_id]
+    if params[:product_id] && params[:download_images] == "1"
       product = Product.find_by_id(params[:product_id])
       links_to_images = market_page.xpath("//td[@class='bigpic']") + market_page.xpath("//td[@class='smallpic']/div")
       links_to_images.each do |link|
