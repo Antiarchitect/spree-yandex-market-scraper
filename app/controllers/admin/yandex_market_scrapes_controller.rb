@@ -11,10 +11,11 @@ class Admin::YandexMarketScrapesController < Spree::BaseController
     if params[:product_id]
       product = Product.find_by_id(params[:product_id])
       links_to_images = market_page.xpath("//td[@class='bigpic']") + market_page.xpath("//td[@class='smallpic']/div")
-      links_to_images.each_with_index do |link, index|
-        image = link.at_xpath("a").attr("href")
+      links_to_images.each do |link|
+        container = link.at_xpath("a") || link.at_xpath("img")
+        image = container.attr("href") || container.attr("src")
         image_file = open(image)
-        product.images.create(:attachment => image_file, :alt => product.name + '-' + (index + 1).to_s)
+        product.images.create(:attachment => image_file, :alt => product.name + '-' + (product.images.size + 1).to_s)
       end
     end
 
