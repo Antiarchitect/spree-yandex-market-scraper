@@ -1,5 +1,5 @@
 class YandexMarketScraperExtension < Spree::Extension
-  version "0.2.1"
+  version "0.3.0"
   description "Расширение для движка Spree, поозволяющее получить описание и изображения товара из сервиса Яндекс.Маркет"
   url "http://github.com/Antiarchitect/spree-yandex-market-scraper"
 

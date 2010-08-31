@@ -1,7 +1,10 @@
 class Admin::YandexMarketScrapesController < Spree::BaseController
   require 'open-uri'
-  # id - full-spec-cont
+
+  MARKET_ODD_META = '. Все характеристики, сравнение цен, отзывы покупателей на Яндекс.Маркете.'
+
   def new
+
     market_link = open(params[:market_link])
     market_page = Nokogiri::HTML(market_link)
     description = market_page.at_xpath("//div[@id='full-spec-cont']")
@@ -18,6 +21,8 @@ class Admin::YandexMarketScrapesController < Spree::BaseController
         product.images.create(:attachment => image_file, :alt => product.name + '-' + (product.images.size + 1).to_s)
       end
     end
+
+    @meta_description = market_page.at_xpath("//meta[@name='Description']").attr('content').sub(MARKET_ODD_META, '')
 
     respond_to do |wants|
       wants.js
